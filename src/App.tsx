@@ -10,6 +10,8 @@ import Search from "./components/icons/Search";
 import Dropdown from "react-bootstrap/esm/Dropdown";
 import React from "react";
 import Sun from "./components/icons/Sun";
+import Card from "react-bootstrap/esm/Card";
+import { useGetCountriesQuery } from "./services/api";
 
 enum Theme {
   LIGHT = "light",
@@ -30,6 +32,7 @@ const options: Option[] = [
 ];
 
 const App = () => {
+  const { data: countries = [] } = useGetCountriesQuery();
   const [theme, setTheme] = React.useState(Theme.LIGHT);
   const [filter, setFilter] = React.useState(options[0]);
 
@@ -83,6 +86,38 @@ const App = () => {
               </Dropdown.Menu>
             </Dropdown>
           </Col>
+        </Row>
+        <Row lg={4} md={3} sm={2} xs={1} className="g-4 mb-3">
+          {countries.map((country) => (
+            <Col key={country.name.common}>
+              <Card>
+                <Card.Img
+                  className="bg-dark object-fit-contain"
+                  variant="top"
+                  src={country.flags.svg}
+                  alt={country.flags.alt || country.name.common}
+                  height={250}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    <h5>{country.name.common}</h5>
+                  </Card.Title>
+                  <Card.Text>
+                    <b>Population: </b>
+                    {country.population}
+                  </Card.Text>
+                  <Card.Text>
+                    <b>Region: </b>
+                    {country.region}
+                  </Card.Text>
+                  <Card.Text>
+                    <b>Capital: </b>
+                    {country.capital?.join(", ")}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
         </Row>
       </Container>
     </div>
