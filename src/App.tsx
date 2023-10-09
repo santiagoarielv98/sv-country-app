@@ -11,6 +11,8 @@ import Dropdown from "react-bootstrap/esm/Dropdown";
 import React from "react";
 import Sun from "./components/icons/Sun";
 import Card from "react-bootstrap/esm/Card";
+import Pagination from "react-bootstrap/esm/Pagination";
+
 import { useGetCountriesQuery } from "./services/api";
 
 enum Theme {
@@ -35,9 +37,27 @@ const App = () => {
   const { data: countries = [] } = useGetCountriesQuery();
   const [theme, setTheme] = React.useState(Theme.LIGHT);
   const [filter, setFilter] = React.useState(options[0]);
+  const [search, setSearch] = React.useState("");
+
+  const [perPage, setPerPage] = React.useState(12);
+
+  const filteredCountries = React.useMemo(
+    () =>
+      countries
+        .filter(
+          (country) =>
+            country.name.common.toLowerCase().includes(search.toLowerCase()) && country.region.includes(filter.value)
+        )
+        .slice(0, perPage),
+    [filter, search, countries, perPage]
+  );
 
   const handleChange = (option: Option) => {
     setFilter(option);
+  };
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
   };
 
   const toggleTheme = () => {
@@ -58,9 +78,8 @@ const App = () => {
           </Button>
         </Container>
       </Navbar>
-      {/* Search for a country      dropdown region filter */}
       <Container>
-        <Row className="my-3 justify-content-between">
+        <Row className="my-3 justify-content-between flex-wrap">
           <Col>
             <div className="position-relative">
               <div className="position-absolute top-50 start-0 translate-middle-y ms-3">
@@ -71,6 +90,7 @@ const App = () => {
                 placeholder="Username"
                 aria-label="Username"
                 aria-describedby="basic-addon1"
+                onChange={handleSearch}
               />
             </div>
           </Col>
@@ -79,7 +99,12 @@ const App = () => {
               <Dropdown.Toggle id="dropdown-basic">{filter.value || "Filter by Region"}</Dropdown.Toggle>
               <Dropdown.Menu>
                 {options.map((option) => (
-                  <Dropdown.Item key={option.value} onClick={() => handleChange(option)} as="button">
+                  <Dropdown.Item
+                    active={option.value === filter.value}
+                    key={option.value}
+                    onClick={() => handleChange(option)}
+                    as="button"
+                  >
                     {option.label}
                   </Dropdown.Item>
                 ))}
@@ -88,7 +113,7 @@ const App = () => {
           </Col>
         </Row>
         <Row lg={4} md={3} sm={2} xs={1} className="g-4 mb-3">
-          {countries.map((country) => (
+          {filteredCountries.map((country) => (
             <Col key={country.name.common}>
               <Card>
                 <Card.Img
@@ -119,6 +144,13 @@ const App = () => {
             </Col>
           ))}
         </Row>
+        <Pagination>
+          {filteredCountries.map((_, i) => (
+            <Pagination.Item as="button" active={i + 1 === 1}>
+              {i + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
       </Container>
     </div>
   );
