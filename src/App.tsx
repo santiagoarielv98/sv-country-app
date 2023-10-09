@@ -9,7 +9,12 @@ import Moon from "./components/icons/Moon";
 import Search from "./components/icons/Search";
 import Dropdown from "react-bootstrap/esm/Dropdown";
 import React from "react";
+import Sun from "./components/icons/Sun";
 
+enum Theme {
+  LIGHT = "light",
+  DARK = "dark",
+}
 interface Option {
   value: string;
   label: string;
@@ -25,10 +30,15 @@ const options: Option[] = [
 ];
 
 const App = () => {
+  const [theme, setTheme] = React.useState(Theme.LIGHT);
   const [filter, setFilter] = React.useState(options[0]);
 
   const handleChange = (option: Option) => {
     setFilter(option);
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
   };
 
   return (
@@ -39,9 +49,9 @@ const App = () => {
             <GlobeAmericas width="50" height="50" />
             <Navbar.Text className="ms-2">SV # World</Navbar.Text>
           </Navbar.Brand>
-          <Button className="d-inline-flex">
-            <Moon width="24" height="24" />
-            <span className="ms-3">Dark Mode</span>
+          <Button className="d-inline-flex" onClick={toggleTheme}>
+            {theme === Theme.LIGHT ? <Sun width="24" height="24" /> : <Moon width="24" height="24" />}
+            <span className="ms-3 text-capitalize">{theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT} Mode</span>
           </Button>
         </Container>
       </Navbar>
