@@ -96,7 +96,7 @@ const App = () => {
       </Navbar>
       <Container>
         <Row className="my-3 justify-content-between flex-wrap">
-          <Col>
+          <Col sm={8}>
             <div className="position-relative">
               <div className="position-absolute top-50 start-0 translate-middle-y ms-3">
                 <Search width="20" height="20" />
@@ -110,8 +110,8 @@ const App = () => {
               />
             </div>
           </Col>
-          <Col>
-            <Dropdown>
+          <Col sm={4}>
+            <Dropdown className="d-flex justify-content-end">
               <Dropdown.Toggle id="dropdown-basic">{filter.value || "Filter by Region"}</Dropdown.Toggle>
               <Dropdown.Menu>
                 {options.map((option) => (
@@ -128,7 +128,7 @@ const App = () => {
             </Dropdown>
           </Col>
         </Row>
-        <Row lg={4} md={3} sm={2} xs={1} className="g-4 mb-3">
+        <Row xl={4} lg={3} md={2} sm={2} xs={1} className="g-4 mb-3">
           {filteredCountries.slice((page - 1) * perPage, page * perPage).map((country) => (
             <Col key={country.name.common}>
               <Card>
@@ -162,7 +162,7 @@ const App = () => {
             </Col>
           ))}
         </Row>
-        <Pagination>
+        <Pagination className="justify-content-center">
           <Pagination.Prev disabled={page === 1} onClick={() => setPage(page - 1)} />
           {pagination.map((pag, i) => (
             <Pagination.Item key={i} active={pag === page} onClick={() => handlePageClick(pag)}>
@@ -189,11 +189,6 @@ const getHighlightedText = (text: string, highlight: string) => {
     </span>
   );
 };
-/* 1 2 3 4 5 ... 9 */
-/* 1 ... 3 4 5 ... 9 */
-/* 1 ... 4 5 6 ... 9 */
-/* 1 ... 5 6 7 ... 9 */
-/* 1 ... 6 7 8 ... 9 */
 const getPagination = (totalPages: number, currentPage: number, siblings: number) => {
   const totalNumbers = 7 + siblings;
   if (totalNumbers >= totalPages) {
