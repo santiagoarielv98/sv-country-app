@@ -33,23 +33,20 @@ const options: Option[] = [
   { value: "Oceania", label: "Oceania" },
 ];
 
+const initialTheme = localStorage.theme || Theme.LIGHT;
+
 const App = () => {
   const { data: countries = [] } = useGetCountriesQuery();
-  const [theme, setTheme] = React.useState(Theme.LIGHT);
+  const [theme, setTheme] = React.useState(initialTheme);
   const [filter, setFilter] = React.useState(options[0]);
   const [search, setSearch] = React.useState("");
 
-  const [perPage, setPerPage] = React.useState(12);
+  const [page, setPage] = React.useState(1);
+  const perPage = 12;
 
-  const filteredCountries = React.useMemo(
-    () =>
-      countries
-        .filter(
-          (country) =>
-            country.name.common.toLowerCase().includes(search.toLowerCase()) && country.region.includes(filter.value)
-        )
-        .slice(0, perPage),
-    [filter, search, countries, perPage]
+  const filteredCountries = countries.filter(
+    (country) =>
+      country.name.common.toLowerCase().includes(search.toLowerCase()) && country.region.includes(filter.value)
   );
 
   const handleChange = (option: Option) => {
@@ -61,8 +58,20 @@ const App = () => {
   };
 
   const toggleTheme = () => {
-    setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
+    const newTheme = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
+    localStorage.theme = newTheme;
+    setTheme(newTheme);
   };
+
+  const totalPages = Math.ceil(filteredCountries.length / perPage);
+
+  React.useEffect(() => {
+    setPage(1);
+  }, [filter, search]);
+
+  React.useEffect(() => {
+    document.documentElement.setAttribute("data-bs-theme", theme);
+  }, [theme]);
 
   return (
     <div>
@@ -87,9 +96,9 @@ const App = () => {
               </div>
               <Form.Control
                 className="ps-5"
-                placeholder="Username"
-                aria-label="Username"
-                aria-describedby="basic-addon1"
+                type="text"
+                placeholder="Search for a country..."
+                value={search}
                 onChange={handleSearch}
               />
             </div>
@@ -113,7 +122,7 @@ const App = () => {
           </Col>
         </Row>
         <Row lg={4} md={3} sm={2} xs={1} className="g-4 mb-3">
-          {filteredCountries.map((country) => (
+          {filteredCountries.slice((page - 1) * perPage, page * perPage).map((country) => (
             <Col key={country.name.common}>
               <Card>
                 <Card.Img
@@ -125,7 +134,8 @@ const App = () => {
                 />
                 <Card.Body>
                   <Card.Title>
-                    <h5>{country.name.common}</h5>
+                    {/* <h5>{country.name.common}</h5> */}
+                    <h5>{getHighlightedText(country.name.common, search)}</h5>
                   </Card.Title>
                   <Card.Text>
                     <b>Population: </b>
@@ -145,14 +155,28 @@ const App = () => {
           ))}
         </Row>
         <Pagination>
-          {filteredCountries.map((_, i) => (
-            <Pagination.Item as="button" active={i + 1 === 1}>
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <Pagination.Item key={i} active={i + 1 === page} onClick={() => setPage(i + 1)}>
               {i + 1}
             </Pagination.Item>
           ))}
         </Pagination>
       </Container>
     </div>
+  );
+};
+
+const getHighlightedText = (text: string, highlight: string) => {
+  const parts = text.split(new RegExp(`(${highlight})`, "gi"));
+  return (
+    <span>
+      {" "}
+      {parts.map((part, i) => (
+        <span key={i} className={part.toLowerCase() === highlight.toLowerCase() ? "bg-warning fw-bold" : ""}>
+          {part}
+        </span>
+      ))}{" "}
+    </span>
   );
 };
 
