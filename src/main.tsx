@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 
 import { store } from "./app/store.ts";
-import routes from "./routes/index.ts";
+import routes from "./routes";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 

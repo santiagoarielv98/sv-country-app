@@ -12,6 +12,7 @@ import React from "react";
 import Sun from "./components/icons/Sun";
 import Card from "react-bootstrap/esm/Card";
 import Pagination from "react-bootstrap/esm/Pagination";
+import _ from "lodash";
 
 import { useGetCountriesQuery } from "./services/api";
 
@@ -48,6 +49,9 @@ const App = () => {
     (country) =>
       country.name.common.toLowerCase().includes(search.toLowerCase()) && country.region.includes(filter.value)
   );
+  const totalPages = Math.ceil(filteredCountries.length / perPage);
+
+  const pagination = getPagination(totalPages, page, 1);
 
   const handleChange = (option: Option) => {
     setFilter(option);
@@ -63,7 +67,10 @@ const App = () => {
     setTheme(newTheme);
   };
 
-  const totalPages = Math.ceil(filteredCountries.length / perPage);
+  const handlePageClick = (page: number | string) => {
+    if (page === "...") return;
+    setPage(page as number);
+  };
 
   React.useEffect(() => {
     setPage(1);
@@ -134,8 +141,9 @@ const App = () => {
                 />
                 <Card.Body>
                   <Card.Title>
-                    {/* <h5>{country.name.common}</h5> */}
-                    <h5>{getHighlightedText(country.name.common, search)}</h5>
+                    <h5 className="text-truncate">
+                      {search.length === 0 ? country.name.common : getHighlightedText(country.name.common, search)}
+                    </h5>
                   </Card.Title>
                   <Card.Text>
                     <b>Population: </b>
@@ -145,7 +153,7 @@ const App = () => {
                     <b>Region: </b>
                     {country.region}
                   </Card.Text>
-                  <Card.Text>
+                  <Card.Text className="text-truncate">
                     <b>Capital: </b>
                     {country.capital?.join(", ")}
                   </Card.Text>
@@ -155,11 +163,13 @@ const App = () => {
           ))}
         </Row>
         <Pagination>
-          {Array.from({ length: totalPages }).map((_, i) => (
-            <Pagination.Item key={i} active={i + 1 === page} onClick={() => setPage(i + 1)}>
-              {i + 1}
+          <Pagination.Prev disabled={page === 1} onClick={() => setPage(page - 1)} />
+          {pagination.map((pag, i) => (
+            <Pagination.Item key={i} active={pag === page} onClick={() => handlePageClick(pag)}>
+              {pag}
             </Pagination.Item>
           ))}
+          <Pagination.Next disabled={page === totalPages} onClick={() => setPage(page + 1)} />
         </Pagination>
       </Container>
     </div>
@@ -178,6 +188,36 @@ const getHighlightedText = (text: string, highlight: string) => {
       ))}{" "}
     </span>
   );
+};
+/* 1 2 3 4 5 ... 9 */
+/* 1 ... 3 4 5 ... 9 */
+/* 1 ... 4 5 6 ... 9 */
+/* 1 ... 5 6 7 ... 9 */
+/* 1 ... 6 7 8 ... 9 */
+const getPagination = (totalPages: number, currentPage: number, siblings: number) => {
+  const totalNumbers = 7 + siblings;
+  if (totalNumbers >= totalPages) {
+    return _.range(1, totalPages + 1);
+  }
+
+  const leftSiblingIndex = Math.max(currentPage - siblings, 1);
+  const rightSiblingIndex = Math.min(currentPage + siblings, totalPages);
+
+  const shouldShowLeftDots = leftSiblingIndex > 2;
+  const shouldShowRightDots = rightSiblingIndex < totalPages - 2;
+
+  if (!shouldShowLeftDots && shouldShowRightDots) {
+    const leftItemCount = 3 + 2 * siblings;
+    const leftRange = _.range(1, leftItemCount + 1);
+    return [...leftRange, "...", totalPages];
+  } else if (shouldShowLeftDots && !shouldShowRightDots) {
+    const rightItemCount = 3 + 2 * siblings;
+    const rightRange = _.range(totalPages - rightItemCount + 1, totalPages + 1);
+    return [1, "...", ...rightRange];
+  } else {
+    const middleRange = _.range(leftSiblingIndex, rightSiblingIndex + 1);
+    return [1, "...", ...middleRange, "...", totalPages];
+  }
 };
 
 export default App;
