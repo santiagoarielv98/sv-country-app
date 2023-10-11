@@ -23,10 +23,13 @@ const Layout = () => {
     setTheme((prev) => {
       const newTheme = prev === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
       localStorage.theme = newTheme;
-      document.documentElement.setAttribute("data-bs-theme", newTheme);
       return newTheme;
     });
   }, []);
+
+  React.useEffect(() => {
+    document.documentElement.setAttribute("data-bs-theme", theme);
+  }, [theme]);
 
   return (
     <div>
