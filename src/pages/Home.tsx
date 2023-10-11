@@ -3,10 +3,10 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Search from "../components/icons/Search";
-import Dropdown from "react-bootstrap/esm/Dropdown";
+import Dropdown from "react-bootstrap/Dropdown";
 import React from "react";
-import Card from "react-bootstrap/esm/Card";
-import Pagination from "react-bootstrap/esm/Pagination";
+import Card from "react-bootstrap/Card";
+import Pagination from "react-bootstrap/Pagination";
 import _ from "lodash";
 
 import { useGetCountriesQuery } from "../services/api";
@@ -60,8 +60,8 @@ const Home = () => {
   }, [filter, search]);
 
   return (
-    <Container>
-      <Row className="my-3 justify-content-between flex-wrap gap-3">
+    <Container className="my-3">
+      <Row className="mb-3 justify-content-between flex-wrap gap-3">
         <Col>
           <div className="position-relative">
             <div className="position-absolute top-50 start-0 translate-middle-y ms-3">
