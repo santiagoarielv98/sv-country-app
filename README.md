@@ -1,27 +1,88 @@
-# React + TypeScript + Vite
+# **SV Country App**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación interactiva desarrollada con React que consume la API de RestCountries. Permite a los usuarios explorar información detallada de los países del mundo.
+![SV Country App](https://raw.githubusercontent.com/santiagoarielv98/sv-country-app/main/public/images/captura.webp)
+---
 
-Currently, two official plugins are available:
+## **Tabla de Contenidos**
+1. [Características](#características)
+2. [Tecnologías Utilizadas](#tecnologías-utilizadas)
+3. [Requisitos Previos](#requisitos-previos)
+4. [Instalación](#instalación)
+5. [Uso](#uso)
+6. [Contribuciones](#contribuciones)
+7. [Licencia](#licencia)
+8. [Contacto](#contacto)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## **Características**
+- 🌍 Búsqueda por nombre de país.
+- 📂 Filtrado por región.
+- 📜 Información detallada de cada país: bandera, nombre, capital, población, área, idiomas, moneda.
+- 🎨 Diseño sencillo y responsivo.
+- 🌙 Modo oscuro.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## **Tecnologías Utilizadas**
+- **Frontend**: React, React Router, Bootstrap.
+- **API**: [RestCountries](https://restcountries.com/).
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+---
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## **Requisitos Previos**
+Asegúrate de tener instalados los siguientes programas:
+
+- Node.js (v18 o superior)
+- Navegador web actualizado
+
+---
+
+## **Instalación**
+Sigue estos pasos para ejecutar la aplicación localmente:
+
+1. Clonar el repositorio:  
+   ```bash
+   git clone https://github.com/santiagoarielv98/sv-country-app.git
+   cd sv-country-app
+   ```
+2. Instalar dependencias:  
+   ```bash
+   pnpm install
+   ```
+3. Iniciar la aplicación:  
+   ```bash
+   pnpm dev
+   ```
+
+---
+
+## **Uso**
+1. Accede a la aplicación en tu navegador en `http://localhost:5173`.
+2. Usa el cuadro de búsqueda para encontrar países.
+3. Filtra por región desde el menú desplegable.
+4. Haz clic en un país para ver más detalles.
+
+---
+
+## **Contribuciones**
+¡Las contribuciones son bienvenidas! Sigue estos pasos:
+
+1. Haz un fork del proyecto.
+2. Crea una nueva rama (`git checkout -b feature/nueva-caracteristica`).
+3. Confirma tus cambios (`git commit -m 'Agregada nueva característica'`).
+4. Haz push a tu rama (`git push origin feature/nueva-caracteristica`).
+5. Abre un Pull Request.
+
+---
+
+## **Licencia**
+Este proyecto está licenciado bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
+
+---
+
+## **Contacto**
+👤 **[Santiago Villanueva](https://linkedin.com/in/santiagoarielv/)**  
+📧 [santiagoarielv98@gmail.com](mailto:santiagoarielv98@gmail.com)  
+🌐 [Portafolio](https://santiagoarielv98.vercel.app/)
