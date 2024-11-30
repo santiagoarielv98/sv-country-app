@@ -1,6 +1,6 @@
 # **SV Country App**
 
-Aplicación interactiva desarrollada con React que consume la API de RestCountries. Permite a los usuarios explorar información detallada de los países del mundo.
+Aplicación interactiva desarrollada con React y Typescript que consume la API de RestCountries. Permite a los usuarios explorar información detallada de los países del mundo.
 
 🔗 **[Ver Demo](https://sv-country-app.vercel.app/)**
 
@@ -26,20 +26,30 @@ Aplicación interactiva desarrollada con React que consume la API de RestCountri
 - 📜 Información detallada de cada país: bandera, nombre, capital, población, área, idiomas, moneda.
 - 🎨 Diseño sencillo y responsivo.
 - 🌙 Modo oscuro.
+- 🐳 Contenedor Docker
+- 🚀 Despliegue en Vercel.
 
 ---
 
 ## **Tecnologías Utilizadas**
-- **Frontend**: React, React Router, Bootstrap.
-- **API**: [RestCountries](https://restcountries.com/).
+- React
+- Typescript
+- React Router
+- Axios
+- Bootstrap
+- Docker
+- Vercel
+- RestCountries API
 
 ---
 
 ## **Requisitos Previos**
 Asegúrate de tener instalados los siguientes programas:
 
-- Node.js (v18 o superior)
+- Node.js (v20 o superior)
 - Navegador web actualizado
+- Docker (opcional)
+- Git (opcional)
 
 ---
 
@@ -58,6 +68,15 @@ Sigue estos pasos para ejecutar la aplicación localmente:
 3. Iniciar la aplicación:  
    ```bash
    pnpm dev
+   ```
+
+Para ejecutar la aplicación con Docker, sigue estos pasos:
+
+1. Construir la imagen:  
+   ```bash
+docker-compose up --build
+# o
+docker build -t sv-country-app .
    ```
 
 ---
