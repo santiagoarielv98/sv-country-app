@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import { Link, useParams } from "react-router-dom";
 
 import { useGetCountriesQuery } from "@/app/services/api";
-import CountryPlaceholder from "./CountryPlaceholder";
+import CountryPlaceholder from "./components/CountryPlaceholder";
 
 const CountryDetail = () => {
   const { countryName } = useParams<{ countryName: string }>();

@@ -1,7 +1,8 @@
 import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
 
-import { Option, options } from "./options";
+import type { Option } from "../options";
+import { options } from "../options";
 
 interface CountryFilterProps {
   filter: { value: string };

@@ -1,6 +1,8 @@
-import Search from "@/components/icons/Search";
-import { Col, Form, InputGroup } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
+import Search from "@/components/icons/Search";
 interface CountrySearchProps {
   search: string;
   handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;

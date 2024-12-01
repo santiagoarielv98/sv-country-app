@@ -4,10 +4,10 @@ import Pagination from "react-bootstrap/Pagination";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 
-import CountryFilter from "./CountryFilter";
-import CountrySearch from "./CountrySearch";
+import CountryFilter from "./components/CountryFilter";
+import CountrySearch from "./components/CountrySearch";
 import useCountries from "./hooks/useCountries";
-import PlaceholderCard from "./PlaceholderCard";
+import PlaceholderCard from "./components/PlaceholderCard";
 import getHighlightedText from "@/utils/highlight-text";
 
 const CountryList = () => {

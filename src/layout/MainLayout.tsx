@@ -1,9 +1,10 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
+import Container from "react-bootstrap/Container";
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { Container } from "react-bootstrap";
 
 const MainLayout = () => {
   return (

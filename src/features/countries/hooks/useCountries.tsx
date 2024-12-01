@@ -1,6 +1,7 @@
 import { getPagination } from "@/utils/pagination";
 import React from "react";
-import { Option, options } from "../options";
+import type { Option } from "../options";
+import { options } from "../options";
 import { useGetCountriesQuery } from "@/app/services/api";
 
 const useCountries = () => {
