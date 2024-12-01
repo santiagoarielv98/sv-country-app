@@ -1,18 +1,16 @@
 import React from "react";
 
 import Button from "react-bootstrap/Button";
-import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 
+import { Outlet } from "react-router-dom";
+import { Theme } from "../app/theme";
 import GlobeAmericas from "../components/icons/GlobeAmericas";
 import Moon from "../components/icons/Moon";
 import Sun from "../components/icons/Sun";
-import { Outlet } from "react-router-dom";
 
-enum Theme {
-  LIGHT = "light",
-  DARK = "dark",
-}
+
 
 const initialTheme: Theme = localStorage.theme || Theme.LIGHT;
 
