@@ -1,6 +1,25 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import type { Country } from "../types/country";
+export interface Country {
+  name: {
+    common: string;
+    official: string;
+    nativeName: {
+      [key: string]: {
+        official: string;
+        common: string;
+      };
+    };
+  };
+  region: string;
+  subregion: string;
+  capital: string[];
+  population: number;
+  flags: {
+    alt: string;
+    svg: string;
+  };
+}
 
 export const baseUrl = "https://restcountries.com/v3.1";
 
