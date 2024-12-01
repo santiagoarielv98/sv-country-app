@@ -9,7 +9,7 @@ const MainLayout = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
-      <Container className="my-3 flex-fill">
+      <Container className="my-3 flex-fill" as="main">
         <React.Suspense>
           <Outlet />
         </React.Suspense>
