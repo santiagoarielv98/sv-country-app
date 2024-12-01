@@ -1,13 +1,17 @@
+import { Link } from "react-router-dom";
+
+import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Pagination from "react-bootstrap/Pagination";
 import Row from "react-bootstrap/Row";
-import { Link } from "react-router-dom";
+
+import useCountries from "./hooks/useCountries";
 
 import CountryFilter from "./components/CountryFilter";
 import CountrySearch from "./components/CountrySearch";
-import useCountries from "./hooks/useCountries";
 import PlaceholderCard from "./components/PlaceholderCard";
+
 import getHighlightedText from "@/utils/highlight-text";
 
 const CountryList = () => {
@@ -31,8 +35,17 @@ const CountryList = () => {
         <CountrySearch search={search} handleSearch={handleSearch} />
         <CountryFilter filter={filter} handleChange={handleChange} />
       </Row>
+
       <Row xl={4} lg={3} md={2} sm={2} xs={1} className="g-4">
         {isLoading && Array.from({ length: 12 }).map((_, i) => <PlaceholderCard key={i} />)}
+        {!isLoading && countries.length === 0 && (
+          <Col xl={12} lg={12} md={12} sm={12} xs={12}>
+            <Alert variant="warning">
+              <Alert.Heading>No countries found</Alert.Heading>
+              <p>Try changing the search or filter criteria</p>
+            </Alert>
+          </Col>
+        )}
         {countries.map((country) => (
           <Col key={country.name.common}>
             <Link to={`/country/${country.name.common}`} className="text-decoration-none">
