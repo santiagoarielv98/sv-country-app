@@ -10,8 +10,6 @@ import GlobeAmericas from "../components/icons/GlobeAmericas";
 import Moon from "../components/icons/Moon";
 import Sun from "../components/icons/Sun";
 
-
-
 const initialTheme: Theme = localStorage.theme || Theme.LIGHT;
 
 const Layout = () => {

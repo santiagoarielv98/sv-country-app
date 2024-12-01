@@ -36,7 +36,7 @@ const Home = () => {
 
   const filteredCountries = countries.filter(
     (country) =>
-      country.name.common.toLowerCase().includes(search.toLowerCase()) && country.region.includes(filter.value)
+      country.name.common.toLowerCase().includes(search.toLowerCase()) && country.region.includes(filter.value),
   );
   const totalPages = Math.ceil(filteredCountries.length / perPage);
 
