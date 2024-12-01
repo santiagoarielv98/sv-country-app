@@ -1,10 +1,9 @@
 import React from "react";
-
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-
 import { Outlet } from "react-router-dom";
+
 import { Theme } from "../app/theme";
 import GlobeAmericas from "../components/icons/GlobeAmericas";
 import Moon from "../components/icons/Moon";

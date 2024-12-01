@@ -1,7 +1,9 @@
 import Container from "react-bootstrap/Container";
-import { useGetCountriesQuery } from "../services/api";
-import { Link, useParams } from "react-router-dom";
 import Card from "react-bootstrap/esm/Card";
+import { Link, useParams } from "react-router-dom";
+
+import { useGetCountriesQuery } from "../services/api";
+
 const Detail = () => {
   const { countryName } = useParams<{ countryName: string }>();
 
