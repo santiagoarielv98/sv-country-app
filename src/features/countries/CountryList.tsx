@@ -1,8 +1,6 @@
-import _ from "lodash";
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
 import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
 import Pagination from "react-bootstrap/Pagination";
@@ -11,6 +9,7 @@ import { Link } from "react-router-dom";
 
 import { useGetCountriesQuery } from "@/app/services/api";
 import Search from "@/components/icons/Search";
+import { getPagination } from "@/utils/pagination";
 interface Option {
   value: string;
   label: string;
@@ -39,7 +38,7 @@ const CountryList = () => {
   );
   const totalPages = Math.ceil(filteredCountries.length / perPage);
 
-  const pagination = getPagination(totalPages, page, 1);
+  const pagination = React.useMemo(() => getPagination(totalPages, page, 1), [totalPages, page]);
 
   const handleChange = (option: Option) => {
     setFilter(option);
@@ -59,7 +58,7 @@ const CountryList = () => {
   }, [filter, search]);
 
   return (
-    <Container className="my-3">
+    <main>
       <Row className="mb-3 justify-content-between flex-wrap gap-3">
         <Col>
           <div className="position-relative">
@@ -138,7 +137,7 @@ const CountryList = () => {
         ))}
         <Pagination.Next disabled={page === totalPages} onClick={() => setPage(page + 1)} />
       </Pagination>
-    </Container>
+    </main>
   );
 };
 
@@ -154,31 +153,6 @@ const getHighlightedText = (text: string, highlight: string) => {
       ))}{" "}
     </span>
   );
-};
-const getPagination = (totalPages: number, currentPage: number, siblings: number) => {
-  const totalNumbers = 7 + siblings;
-  if (totalNumbers >= totalPages) {
-    return _.range(1, totalPages + 1);
-  }
-
-  const leftSiblingIndex = Math.max(currentPage - siblings, 1);
-  const rightSiblingIndex = Math.min(currentPage + siblings, totalPages);
-
-  const shouldShowLeftDots = leftSiblingIndex > 2;
-  const shouldShowRightDots = rightSiblingIndex < totalPages - 2;
-
-  if (!shouldShowLeftDots && shouldShowRightDots) {
-    const leftItemCount = 3 + 2 * siblings;
-    const leftRange = _.range(1, leftItemCount + 1);
-    return [...leftRange, "...", totalPages];
-  } else if (shouldShowLeftDots && !shouldShowRightDots) {
-    const rightItemCount = 3 + 2 * siblings;
-    const rightRange = _.range(totalPages - rightItemCount + 1, totalPages + 1);
-    return [1, "...", ...rightRange];
-  } else {
-    const middleRange = _.range(leftSiblingIndex, rightSiblingIndex + 1);
-    return [1, "...", ...middleRange, "...", totalPages];
-  }
 };
 
 export default CountryList;
