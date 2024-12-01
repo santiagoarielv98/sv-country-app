@@ -1,21 +1,21 @@
 import { createHashRouter } from "react-router-dom";
 
-import Layout from "../layout/Layout";
+import MainLayout from "@/layout/MainLayout";
 
 const routes = createHashRouter([
   {
-    element: <Layout />,
+    element: <MainLayout />,
     children: [
       {
         path: "/",
         lazy: async () => ({
-          Component: (await import("../pages/Home")).default,
+          Component: (await import("@/features/countries/CountryList")).default,
         }),
       },
       {
         path: "/country/:countryName",
         lazy: async () => ({
-          Component: (await import("../pages/Detail")).default,
+          Component: (await import("@/features/countries/CountryDetail")).default,
         }),
       },
     ],

@@ -2,9 +2,9 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/esm/Card";
 import { Link, useParams } from "react-router-dom";
 
-import { useGetCountriesQuery } from "../services/api";
+import { useGetCountriesQuery } from "@/app/services/api";
 
-const Detail = () => {
+const CountryDetail = () => {
   const { countryName } = useParams<{ countryName: string }>();
 
   const { country } = useGetCountriesQuery(undefined, {
@@ -17,7 +17,6 @@ const Detail = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(country);
   return (
     <Container className="my-3">
       <Link to="/" className="btn btn-outline-primary mb-3">
@@ -60,4 +59,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default CountryDetail;
