@@ -1,10 +1,12 @@
+import { Link, useParams } from "react-router-dom";
+
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Link, useParams } from "react-router-dom";
 
 import { useGetCountriesQuery } from "@/app/services/api";
+
 import CountryPlaceholder from "./components/CountryPlaceholder";
 
 const CountryDetail = () => {

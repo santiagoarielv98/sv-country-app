@@ -1,5 +1,6 @@
-import { Theme } from "@/app/theme";
 import React from "react";
+
+import { Theme } from "@/app/theme";
 
 const useTheme = () => {
   const [theme, setTheme] = React.useState<Theme>(() => {

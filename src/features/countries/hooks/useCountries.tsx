@@ -1,8 +1,10 @@
-import { getPagination } from "@/utils/pagination";
 import React from "react";
+
+import { useGetCountriesQuery } from "@/app/services/api";
+import { getPagination } from "@/utils/pagination";
+
 import type { Option } from "../options";
 import { options } from "../options";
-import { useGetCountriesQuery } from "@/app/services/api";
 
 const useCountries = () => {
   const { data: countries = [], isLoading } = useGetCountriesQuery();
