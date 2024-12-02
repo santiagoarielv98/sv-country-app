@@ -14,9 +14,10 @@ Aplicación interactiva desarrollada con React y Typescript que consume la API d
 3. [Requisitos Previos](#requisitos-previos)
 4. [Instalación](#instalación)
 5. [Uso](#uso)
-6. [Contribuciones](#contribuciones)
-7. [Licencia](#licencia)
-8. [Contacto](#contacto)
+6. [Pruebas](#pruebas)
+7. [Contribuciones](#contribuciones)
+8. [Licencia](#licencia)
+9. [Contacto](#contacto)
 
 ---
 
@@ -28,6 +29,7 @@ Aplicación interactiva desarrollada con React y Typescript que consume la API d
 - 🌙 Modo oscuro.
 - 🐳 Contenedor Docker
 - 🚀 Despliegue en Vercel.
+- 🧪 Pruebas unitarias.
 
 ---
 
@@ -86,6 +88,42 @@ docker build -t sv-country-app .
 2. Usa el cuadro de búsqueda para encontrar países.
 3. Filtra por región desde el menú desplegable.
 4. Haz clic en un país para ver más detalles.
+
+---
+
+## **Pruebas**
+
+### Ejecutar Pruebas
+Para ejecutar las pruebas unitarias:
+```bash
+pnpm test
+```
+
+### Stack de Pruebas
+- Vitest como test runner
+- React Testing Library para pruebas de componentes
+- Jest DOM para aserciones DOM
+- MSW para mock de servicios
+
+### Cobertura de Pruebas
+Las Pruebas incluyen:
+- ✅ Componentes React (CountryList, CountryDetail)
+- ✅ Custom Hooks (useCountries)
+- ✅ Servicios API
+- ✅ Utilidades y helpers 
+
+### Estructura de Pruebas
+```markdown
+src/
+  └── tests/
+      ├── components/
+      │   ├── CountryList.test.tsx
+      │   └── CountryDetail.test.tsx
+      ├── hooks/
+      │   └── useCountries.test.tsx
+      └── mocks/
+          └── country.mock.ts
+```
 
 ---
 

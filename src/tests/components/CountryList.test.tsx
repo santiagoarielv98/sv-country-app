@@ -1,11 +1,11 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { vi, describe, beforeEach, it, expect } from "vitest";
-import CountryList from "./CountryList";
-import useCountries from "./hooks/useCountries";
-import { options } from "./options";
-import "@testing-library/jest-dom";
+import CountryList from "../../features/countries/CountryList";
+import useCountries from "../../features/countries/hooks/useCountries";
+import { options } from "../../features/countries/options";
 import { mockCountries } from "@/tests/mocks/country.mock";
+import "@testing-library/jest-dom";
 
 vi.mock("./hooks/useCountries");
 

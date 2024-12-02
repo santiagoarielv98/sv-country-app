@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { describe, it, expect, vi } from "vitest";
-import CountryDetail from "./CountryDetail";
+import CountryDetail from "../../features/countries/CountryDetail";
 import { useGetCountriesQuery } from "@/app/services/api";
 import "@testing-library/jest-dom";
 

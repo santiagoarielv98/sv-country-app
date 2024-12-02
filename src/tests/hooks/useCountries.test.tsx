@@ -1,8 +1,8 @@
 import { renderHook, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import useCountries from "./useCountries";
+import useCountries from "../../features/countries/hooks/useCountries";
 import { useGetCountriesQuery } from "@/app/services/api";
-import { options } from "../options";
+import { options } from "../../features/countries/options";
 import { mockCountries2 } from "@/tests/mocks/country.mock";
 
 vi.mock("@/app/services/api", () => ({
