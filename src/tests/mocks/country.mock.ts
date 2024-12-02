@@ -42,3 +42,70 @@ export const mockCountries: Country[] = [
     population: 112519,
   },
 ];
+
+export const mockCountries2 = [
+  {
+    name: { common: "Argentina" },
+    region: "Americas",
+  },
+  {
+    name: { common: "Brazil" },
+    region: "Americas",
+  },
+  {
+    name: { common: "Spain" },
+    region: "Europe",
+  },
+  {
+    name: { common: "France" },
+    region: "Europe",
+  },
+  {
+    name: { common: "Germany" },
+    region: "Europe",
+  },
+  {
+    name: { common: "Italy" },
+    region: "Europe",
+  },
+  {
+    name: { common: "Japan" },
+    region: "Asia",
+  },
+  {
+    name: { common: "China" },
+    region: "Asia",
+  },
+  {
+    name: { common: "India" },
+    region: "Asia",
+  },
+  {
+    name: { common: "Australia" },
+    region: "Oceania",
+  },
+  {
+    name: { common: "New Zealand" },
+    region: "Oceania",
+  },
+  {
+    name: { common: "South Africa" },
+    region: "Africa",
+  },
+  {
+    name: { common: "Egypt" },
+    region: "Africa",
+  },
+  {
+    name: { common: "Nigeria" },
+    region: "Africa",
+  },
+  {
+    name: { common: "Canada" },
+    region: "Americas",
+  },
+  {
+    name: { common: "United States" },
+    region: "Americas",
+  },
+];

@@ -42,18 +42,10 @@ const useCountries = () => {
 
     if (value === "prev" && page > 1) {
       setPage(page - 1);
-      return;
-    }
-
-    if (value === "next" && page < totalPages) {
+    } else if (value === "next" && page < totalPages) {
       setPage(page + 1);
-      return;
-    }
-
-    if (typeof value === "number") {
-      if (value >= 1 && value <= totalPages) {
-        setPage(value);
-      }
+    } else if (typeof value === "number" && value >= 1 && value <= totalPages) {
+      setPage(value);
     }
   };
 
