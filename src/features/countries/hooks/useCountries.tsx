@@ -26,10 +26,12 @@ const useCountries = () => {
   const pagination = React.useMemo(() => getPagination(totalPages, page, 1), [totalPages, page]);
 
   const onFilter = (option: Option) => {
+    setPage(1);
     setFilter(option);
   };
 
   const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPage(1);
     setSearch(event.target.value);
   };
 
@@ -37,10 +39,6 @@ const useCountries = () => {
     if (page === "...") return;
     setPage(page as number);
   };
-
-  React.useEffect(() => {
-    setPage(1);
-  }, [filter, search]);
 
   return {
     countries: filteredCountries.slice((page - 1) * perPage, page * perPage),
