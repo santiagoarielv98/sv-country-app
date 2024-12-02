@@ -21,7 +21,7 @@ const CountryList = () => {
   const { totalPages, currentPage: page, pagination } = paginate;
 
   return (
-    <Row className="gap-3" as="section">
+    <Row className="gap-3 justify-content-center">
       <Row className="justify-content-between flex-wrap gap-3">
         <CountrySearch search={search} handleSearch={handleSearch} />
         <CountryFilter filter={filter} handleChange={handleChange} />

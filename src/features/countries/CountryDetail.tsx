@@ -18,7 +18,7 @@ const CountryDetail = () => {
   });
 
   return (
-    <Row className="gap-3" as="section">
+    <Row className="gap-3 justify-content-center">
       <Col xs={12}>
         <Link to="/">
           <Button variant="outline-primary">Back</Button>
