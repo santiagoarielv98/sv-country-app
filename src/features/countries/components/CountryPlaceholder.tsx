@@ -8,7 +8,7 @@ const CountryPlaceholder = () => {
     <Row>
       <Col md={5}>
         <Card>
-          <Placeholder as={Card.Img} variant="top" animation="wave" src="/images/placeholder.svg" />
+          <Placeholder as={Card.Img} variant="top" animation="wave" src="/images/placeholder.svg" alt="placeholder" />
         </Card>
       </Col>
       <Col md={7} className="my-3">
