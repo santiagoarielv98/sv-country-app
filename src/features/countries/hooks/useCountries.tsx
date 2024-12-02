@@ -35,23 +35,39 @@ const useCountries = () => {
     setSearch(event.target.value);
   };
 
-  const onPaginationClick = (page: number | string) => {
-    if (page === "...") return;
-    setPage(page as number);
+  const onPagination = (value: "prev" | "next" | number | "...") => {
+    if (value === "...") return;
+
+    if (value === "prev" && page > 1) {
+      setPage(page - 1);
+      return;
+    }
+
+    if (value === "next" && page < totalPages) {
+      setPage(page + 1);
+      return;
+    }
+
+    if (typeof value === "number") {
+      if (value >= 1 && value <= totalPages) {
+        setPage(value);
+      }
+    }
   };
 
   return {
+    isLoading,
     countries: filteredCountries.slice((page - 1) * perPage, page * perPage),
     filter,
     search,
-    page,
-    pagination,
-    totalPages,
+    paginate: {
+      totalPages,
+      currentPage: page,
+      pagination,
+    },
     handleChange: onFilter,
     handleSearch: onSearch,
-    handlePageClick: onPaginationClick,
-    setPage,
-    isLoading,
+    handlePagination: onPagination,
   };
 };
 

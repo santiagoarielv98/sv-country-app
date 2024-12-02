@@ -15,19 +15,10 @@ import PlaceholderCard from "./components/PlaceholderCard";
 import getHighlightedText from "@/utils/highlight-text";
 
 const CountryList = () => {
-  const {
-    countries,
-    search,
-    handleSearch,
-    filter,
-    handleChange,
-    pagination,
-    handlePageClick,
-    setPage,
-    page,
-    totalPages,
-    isLoading,
-  } = useCountries();
+  const { countries, search, handleSearch, filter, handleChange, paginate, handlePagination, isLoading } =
+    useCountries();
+
+  const { totalPages, currentPage: page, pagination } = paginate;
 
   return (
     <Row className="gap-3" as="section">
@@ -82,13 +73,13 @@ const CountryList = () => {
         ))}
       </Row>
       <Pagination className="justify-content-center">
-        <Pagination.Prev disabled={page === 1} onClick={() => setPage(page - 1)} />
+        <Pagination.Prev disabled={page === 1} onClick={() => handlePagination("prev")} />
         {pagination.map((pag, i) => (
-          <Pagination.Item key={i} active={pag === page} onClick={() => handlePageClick(pag)}>
+          <Pagination.Item key={i} active={pag === page} onClick={() => handlePagination(pag as number)}>
             {pag}
           </Pagination.Item>
         ))}
-        <Pagination.Next disabled={page === totalPages} onClick={() => setPage(page + 1)} />
+        <Pagination.Next disabled={page === totalPages} onClick={() => handlePagination("next")} />
       </Pagination>
     </Row>
   );
