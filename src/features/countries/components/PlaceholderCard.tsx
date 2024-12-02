@@ -4,7 +4,7 @@ import Placeholder from "react-bootstrap/Placeholder";
 const PlaceholderCard = () => {
   return (
     <Card>
-      <Placeholder as={Card.Img} variant="top" animation="wave" className="bg-dark" height={250} />
+      <Placeholder as={Card.Img} variant="top" animation="wave" className="bg-dark" height={250} alt="placeholder" />
       <Card.Body>
         <Placeholder as={Card.Title} animation="wave">
           <Placeholder xs={6} />
