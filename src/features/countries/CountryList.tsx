@@ -28,7 +28,12 @@ const CountryList = () => {
       </Row>
 
       <Row xl={4} lg={3} md={2} sm={2} xs={1} className="g-4">
-        {isLoading && Array.from({ length: 12 }).map((_, i) => <PlaceholderCard key={i} />)}
+        {isLoading &&
+          Array.from({ length: 12 }).map((_, i) => (
+            <Col key={i}>
+              <PlaceholderCard />
+            </Col>
+          ))}
         {!isLoading && countries.length === 0 && (
           <Col xl={12} lg={12} md={12} sm={12} xs={12}>
             <Alert variant="warning">
